@@ -1,155 +1,81 @@
-
-
-
 <?php
-/*$controller = 'cliente';
-$action = 'index';
-$data = 0;
+	$controller = '';
+	$action = '';
+	$data = 0;
 
-if(isset($_GET["controlador"])){
-    $controller = $_GET["controlador"];
-}
-if(isset($_GET["accion"])){
-    $action = $_GET["accion"];
-}
-if(isset($_GET["data"])){
-    $data = $_GET["data"];
-}
+	if(isset($_GET["controlador"])){
+		$controller = $_GET["controlador"];
+	}
+	if(isset($_GET["accion"])){
+		$action = $_GET["accion"];
+	}
+	if(isset($_GET["data"])){
+		$data = $_GET["data"];
+	}
+	
+	/*** Artefacto antiguo
+	header('Set-Cookie: cross-site-cookie=name; SameSite=None; Secure');
+	require_once 'lib/config.php';
+	$controlador = "Operador";
+	$accion = "login";
+	***/
 
-// #############################
-//require_once("../controller/ClienteController.php");
-//use controller\ClienteController;
+	session_start();
 
+	if (isset($_SESSION["clave_secreta"]) && ($_SESSION["clave_secreta"] == "final2024")){
 
-//$controlador = new ClienteController();
-//$controlador->index();
-//#############################
+		/*** Artefacto antiguo - Arrays de controladores y acciones
+		//Capturar controlador y acción, si especificada por el usuario.
+		$c = filter_input(INPUT_GET,"c",FILTER_SANITIZE_STRING);
+		if(!$c) $c = filter_input(INPUT_POST,"c",FILTER_SANITIZE_STRING);
+		$a = filter_input(INPUT_GET,"a",FILTER_SANITIZE_STRING);
+		if(!$a) $a = filter_input(INPUT_POST,"a",FILTER_SANITIZE_STRING);
+		//Validar parámetros válidos.
+		if(in_array($c,CONTROLADORES) && in_array($a,ACCIONES)){
+			$controlador = $c;
+			$accion = $a;
+		}
+		else{
+			$controlador = CONTROLADOR_POR_DEFECTO;
+			$accion = ACCION_POR_DEFECTO;
+		}
+		***/
 
-//Guardamos una copia del controller
-$inputController = $controller;
+		//Verificación de horario
+		$fechaActual = new DateTime("NOW", new DateTimeZone("America/Argentina/ComodRivadavia"));
+		$horaSalida = new DateTime($fechaActual->format("d-m-Y")." ".$_SESSION["horaSalida"], new DateTimeZone("America/Argentina/ComodRivadavia"));
+		$horaEntrada = new DateTime($fechaActual->format("d-m-Y")." ".$_SESSION["horaEntrada"], new DateTimeZone("America/Argentina/ComodRivadavia"));
+		if(($fechaActual > $horaSalida) || ($fechaActual < $horaEntrada)){
+			$controller = "operador";
+			$action = 'fueraHorario';
+		}
+	}
 
-//Invocar el controlador y accion correspondiente.
-require_once '../controller/'.ucfirst($controller).'Controller.php';
-//Convertir $controller a objeto. String => Object()
-$controller = "\\controller\\".ucfirst($controller).'Controller';
-$controller = new $controller;
-//llamar al metodo que corresponda
-call_user_func_array(
-    array($controller, $action), //cliente->delete()
-    array($inputController, $action, $data)       //cliente->delete(action, data)
-);
+	else{
+		if(($controller !== "operador" || $action != "autenticacion") && ($action != "reseteoClave" && $action != "resetear")){
+			$controller = 'operador';
+			$action = 'login';
+			$data = 0;
+		}
+	}
 
-*/
+	/*** Artefacto antiguo - Array de funciones de controladores
+    require_once 'controlador/'.ucfirst($controlador).'Controlador.php';
+    $controlador = ucfirst($controlador).'Controlador';
+	$controlador = new $controlador;
+	call_user_func_array(array($controlador, $accion), array());
+	***/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // Controlador principal de la aplicación
-    /**
-     * Capturar, si existen, los parametros [controlador | accion | data]
-     */
-   $controller = ''; 
-    $action = '';
-    $data = 0;
-    
-    if(isset($_GET["controlador"])){
-        $controller = $_GET["controlador"];
-
-    }
-    if(isset($_GET["accion"])){
-        $action = $_GET["accion"];
-    }
-    if(isset($_GET["data"])){
-        $data = $_GET["data"];
-    }
-
-
-    session_start();
-
-    if(isset($_SESSION["clave_secreta"]) && ($_SESSION["clave_secreta"] === "lab2023")){
-        //Preguntar por el horario
-       
-      $fechaActual = new DateTime("NOW", new DateTimeZone("America/Argentina/ComodRivadavia"));
-       $horaSalida = new DateTime($fechaActual->format("d-m-Y")." ".$_SESSION["horaSalida"], new DateTimeZone("America/Argentina/ComodRivadavia"));
-       $horaEntrada = new DateTime($fechaActual->format("d-m-Y")." ".$_SESSION["horaEntrada"], new DateTimeZone("America/Argentina/ComodRivadavia"));
-        //falta hora de salida y validar el rango horario
-   if(($fechaActual > $horaSalida) || ($fechaActual < $horaEntrada)){
-        
-            $controller = 'usuario'; 
-            $action = 'fueraHorario';
-        }
-       /* if( $_SESSION["perfil"]!=1 && ($controller=="perfil" || ( ($controller=="usuario" && $action!="logout")) )){
-            $controller = 'usuario'; 
-            $action = 'fordiben';
-            $data = 0;
-        }*/
-    }
-    
-   
-    
-  
-    else{
-        if(($controller !== "usuario" || $action != "autentication") && ($action!="reseteoClave" && $action!="resetear" ) ){
-          
-                $controller = 'usuario'; 
-                $action = 'login';
-                $data = 0;
-            
-        }
-        
-            
-   
-            
-        }
-    
-    
-
-
-    // #############################
-    //require_once("../controller/ClienteController.php");
-    //use controller\ClienteController;
-
-
-    //$controlador = new ClienteController();
-    //$controlador->index();
-    //#############################
-
-    //Guardamos una copia del controller
-    $inputController = $controller;
-    //Invocar el controlador y accion correspondiente.
-    require_once '../controller/'.ucfirst($controller).'Controller.php';
-    //Convertir $controller a objeto. String => Object()
-    $controller = "\\controller\\".ucfirst($controller).'Controller';
-    $controller = new $controller;
-    //llamar al metodo que corresponda
-    call_user_func_array(
-        array($controller, $action), //cliente->delete()
-        array($inputController, $action, $data)       //cliente->delete(action, data)
-    );
-    //echo"Controller es " .$controller;
-    //echo" action es " .$action;
-  
-    //Para el LUNES 08/05 agregar:
-    //Peticion asíncrona para el alta de cliente.
-    //Replicar las validaciones del lado cliente, en el lado servidor (DAO)
+	//Copia de controller
+	$inputController = $controller;
+	//Invocación del controlador
+	require_once '../controller/'.ucfirst($controller).'Controller.php';
+	//Conversión $controller a objeto. String => Object()
+	$controller = "\\controller\\".ucfirst($controller).'Controller';
+	$controller = new $controller;
+	//Llamada al método correspondiente
+	call_user_func_array(
+		array($controller, $action),   //Ej: operador->delete()
+		array($inputController, $action, $data)  //Ej: operador->delete(action,data)
+	);
+//APARENTEMENTE NO VA EL COSITO DEL FINAL PHP - REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR

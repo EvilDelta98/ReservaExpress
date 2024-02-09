@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <?php
         require_once "../public/view/includes/head.php";
@@ -11,23 +11,34 @@
        require_once "../public/view/includes/headerlogin.php";
    ?>
     </header>
-<body>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <center>
-    <h1>Está fuera de la franja horaria permitida</h1>
-    <h3>En 5 segundos será redireccionado automaticamente a la página de inicio.</h3>
-    <h3> O bien, haga click <a href="http://localhost/entregable_02/public/"> aquí</a></h3>
 
-    </center>
-    <br>
-    <br> <br>
-    <br> <br>
-    <br>
+<body class="container-fluid text-justify h5 overflow-auto">
+	<div class="alert alert-info">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<strong>Está fuera de la franja horaria permitida</strong>
+		<p id="contador">Será redireccionado a la página de inicio en 5 segundos....</p>
+		<p>Si no lo redirecciona, haga click <a href="public">aquí</a></p>
+	</div>
+
+	<script type="text/javascript">
+		var count = 5;
+		var counter = setInterval(timer, 1000);
+		function timer(){
+  			count=count-1;
+  			if (count <= 0){
+     			clearInterval(counter);
+     		return;
+  			}
+  		if(count == 1){
+  			document.getElementById("contador").innerHTML='Será redireccionado a la página de autenticación en '+count+' segundo....';
+  		}
+  		else{
+  			document.getElementById("contador").innerHTML='Será redireccionado a la página de autenticación en '+count+' segundos....';
+		}
+	}
+	</script>
 </body>
+
 <footer>
 <?php
 
