@@ -1,5 +1,8 @@
 <?php
-	class Operador{
+
+    namespace model\entities;
+
+	final class Operador{
 		private $id, $nombre, $apellido, $correo, $cuenta, $clave, $tipoUsuario, $estado, $fechaAlta;
 
 		public function __construct(){ 
@@ -109,7 +112,7 @@
 
 
 		/** Métodos **/
-		public function toJSON(){
+		public function toJSON(): object{
 			$json = json_decode("{}");
 			$json->{"id"} = $this->getId();
             $json->{"nombre"} = $this->getNombre();
@@ -198,4 +201,3 @@
 		}
  	}
     */
-?>

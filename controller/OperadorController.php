@@ -289,7 +289,7 @@ final class OperadorController{
         require_once("../public/view/operador/fueraHorario.php");
         header("refresh:6;url=http://localhost/PruebaNuevaHibrido/public/socio/index");
     }
-
+}
     //MÉTODOS VIEJOSSSSSSSSSSSSSSSSSSSSSSSSS
     /*
     public function alta(){
