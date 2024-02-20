@@ -7,35 +7,31 @@
     <script defer type="text/javascript" src="view/operador/js/operador.js"></script>
 </head>
 <header>
-<?php
+    <?php
      require_once ("../public/view/includes/header.php");
      ?>
-    </header>
+</header>
 <body>
     <br>
     <br>
     <br>
-   
-   
     <center> <h1>Bienvenido <?= $_SESSION["usuario"]?></h1>
-    <br>
-    <p> Opciones:</p>
+        <br>
+        <p> Opciones:</p>
+        <div id="botones">
+            <button type="button" class="btn btn-primary ms-3" onclick="showIndex()">Administrar Usuarios</button>
+            <br>
+            <br>
+            <button type="button" class="btn btn-primary ms-3" onclick="showPerfiles()">Administrar Perfiles</button>
+            <br>
+            <br>
+            <button type="button" class="btn btn-primary ms-3" onclick="showSocios()">Gestionar Socios</button>
+            <br>
+            <br>
+        </div>
     </center>
-    <center>
-    <div id="botones" >
-    <button type="button" class="btn btn-primary ms-3" onclick="showIndex()">Administrar Usuarios</button>
-       <br>
-       <br>
-       <button type="button" class="btn btn-primary ms-3" onclick="showPerfiles()">Administrar Perfiles</button>
-       <br>
-       <br>
-    <button type="button" class="btn btn-primary ms-3" onclick="showClientes()">Gestionar Clientes </button>
-   <br>
-   <br>
-
-    </div>
-    </center>
-    <div>
+<!--- Acá va <div> o va </body>? --->
+<div>
 
 
 
