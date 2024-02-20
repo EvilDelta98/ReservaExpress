@@ -78,7 +78,7 @@
         $json->{"edicion"} = $this->getEdicion();
         $json->{"editorial"} = $this->getEditorial();
         $json->{"disciplina"} = $this->getDisciplina();
-        $json->{"cantidadElementos"} = $this->getDisciplina();
+        $json->{"cantElementos"} = $this->getDisciplina();
         $json->{"estado"} = $this->getDisciplina();
         return $json;
     }
