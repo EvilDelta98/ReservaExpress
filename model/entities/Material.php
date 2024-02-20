@@ -1,3 +1,4 @@
+
 <?php
  namespace model\entities;
 
@@ -67,8 +68,12 @@
         $this->disciplina = (is_string($disciplina) && strlen(trim($disciplina)) <= 255) ? trim($disciplina): "";
     }
     function setEstado($estado){ 
-        $this->estado = (is_integer($estado) && (estado > 0)) ? (int)$id : 0;
+        $this->estado = (is_integer($estado) && (estado > 0)) ? (int)$estado : 0;
     }
+    function setCantEjemplares($cant){ 
+        $this->cantEjemplares = (is_integer($cant && (cant > 0)) ? (int) ) (int) $cant : 0;
+    }
+
     public function toJSON(){
         $json = json_decode("{}");
         $json->{"id"} = $this->getId();
@@ -78,7 +83,7 @@
         $json->{"edicion"} = $this->getEdicion();
         $json->{"editorial"} = $this->getEditorial();
         $json->{"disciplina"} = $this->getDisciplina();
-        $json->{"cantEjemplares"} = $this->getDisciplina();
+        $json->{"cantidadElementos"} = $this->getDisciplina();
         $json->{"estado"} = $this->getDisciplina();
         return $json;
     }
