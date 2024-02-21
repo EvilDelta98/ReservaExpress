@@ -3,6 +3,7 @@
 <head>
     <?php
         require_once "../public/view/includes/head.php";
+		$headTitle = "Sistema ReservaExpress";
         $pass = "1234";
         $hash = password_hash($pass,PASSWORD_DEFAULT);
     ?>
@@ -14,30 +15,47 @@
     ?>
 </header>
 <body>
-    <br>
-    <br>
-    <center> 
-        <h2>Autenticación</h2>
-    </center>
-    <form class="form-label" id="formLogin" method="POST" action="">
-        <div>
-            <label for="datoCuenta">Cuenta</label>
-            <br>
-            <input required type="text" name="datoCuenta" id="datoCuenta">
-        </div>
-        <div>
-            <label for="datoClave">Contraseña</label>
-            <br>
-            <input  required type="password" name="datoClave" id="datoClave">
-        </div>
-        <button type="button" class="btn btn-success my-4" onclick="log()">Ingresar al sistema</button>
-    </form>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <header>
+		<img src="img/tipografia.png" alt="ReservaExpress tipografia" width="260" height="120">
+		<img src="img/logo.png" alt="ReservaExpress logo" width="148" height="148">
+	</header>
+    <main>
+		<form class="formulario_login" id="formLogin" method="POST" action="">
+			<h1 class="h3 mb-3 font-weight-normal">Ingrese sus datos</h1>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="fas fa-user fa-lg"></i></span>
+				</div>
+				<label for="datoCuenta" class="sr-only">Cuenta: </label>
+				<input required type="text" class="form-control" id="datoCuenta" name="datoCuenta" placeholder="Ingrese su nombre de usuario" autofocus required>
+			</div>
+
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="fas fa-key fa-lg"></i></span>
+				</div>
+				<label for="datoClave" class="sr-only">Contraseña: </label>
+				<input required type="password" class="form-control" id="datoClave" name="datoClave" placeholder="Ingrese su contraseña">
+			</div>
+
+			<div class="row px-2">
+			  	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="log()">Ingresar</button>
+			</div>
+    <!--- Handler de error - PROBARRRR
+            <?php
+                //if(isset($error) && ($error != "")){
+            ?>
+			<div class="alert alert-danger py-0 mt-4 mb-1" role="alert">
+				<p class="my-3 text-danger"><?php //echo $error; ?></p>
+			</div>
+            <?php
+                //}
+            ?>
+    --->
+		</form>
+        <!-- IMPLEMENTAR? -->
+		<light><a href="">Recuperar contraseña</a></light>
+	</main>
 </body>
 <footer>
     <?php

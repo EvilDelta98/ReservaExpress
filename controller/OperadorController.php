@@ -291,7 +291,7 @@ final class OperadorController{
     }
 }
     //MÉTODOS VIEJOSSSSSSSSSSSSSSSSSSSSSSSSS
-    /*
+    /* 
     public function alta(){
         $respuesta = json_decode('{"accion":"alta", "error":"", "data":{}}');
         $data = json_decode(filter_input(INPUT_POST,"data"));
@@ -630,3 +630,4 @@ final class OperadorController{
     }
 }	
 ?>
+*/

@@ -35,6 +35,8 @@
 		* Devuelve un listado de socios.
 		* @param JSON $filtros Filtros de búsqueda para la consulta SQL.
 		*/
-		public function list($filtros): array;
+		//LA PRIMERA OPCIÓN ME DA ERROR - PROBARRRRRRRRRRRR
+		//public function list($filtros): array;
+		public function list($filtros);
 }
 ?>
