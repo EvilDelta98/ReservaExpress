@@ -1,7 +1,9 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?$headTitle?></title>
+<title>
+    <?php $headTitle ?>
+</title>
 <base href="public">
 
 <!-- Latest compiled and minified CSS -->
@@ -13,4 +15,5 @@
 <!-- Latest compiled Popper -->
 <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 
-<link href="view/socio/css/generic.css" type="text/css" rel="stylesheet">
+<!-- Hoja de estilo -->
+<!-- <link href="view/socio/css/generic.css" type="text/css" rel="stylesheet"> -->

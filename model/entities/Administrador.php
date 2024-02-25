@@ -2,9 +2,11 @@
 
     namespace model\entities;
 
-	final class Operador{
+	final class Administrador{
+        // Atributos
 		private $id, $nombre, $apellido, $correo, $cuenta, $clave, $tipoUsuario, $estado, $fechaAlta;
 
+        // Constructor
 		public function __construct(){ 
 			$this->setId(0);
 			$this->setNombre("");
@@ -16,7 +18,8 @@
             $this->setEstado(0);
             $this->setFechaAlta("");
 		}
-		/** Getters **/
+
+		// Getters
 		function getId(): int {
 			return $this->id;
 		}
@@ -45,7 +48,7 @@
             return $this->fechaAlta;
         }
 
-		/** Setters **/
+		// Setters
 		/**
 		 * Setea y valida el identificador del usuario.
 		 * @param int $id Identificador del registro en la base de datos.
@@ -111,7 +114,7 @@
 		}
 
 
-		/** Métodos **/
+		// Métodos
 		public function toJSON(): object{
 			$json = json_decode("{}");
 			$json->{"id"} = $this->getId();

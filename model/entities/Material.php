@@ -1,51 +1,54 @@
-
 <?php
- namespace model\entities;
 
- final class Material{
-    private $id, $ISBN, $titulo, $autor, $edicion, $editorial, $disciplina,$cantEjemplares,$estado;
+namespace model\entities;
 
+final class Material{
+    // Atributos
+    private $id,$ISBN,$titulo,$autor,$edicion,$editorial,$disciplina,$cantEjemplares,$estado;
+
+    // Constructor
     public function __construct(){ 
         $this->setId(0);
         $this->setISBN("");
         $this->setTitulo("");
         $this->setAutor("");
-        $this->setEdicion("");
+        $this->setEdicion(0);
         $this->setEditorial("");
         $this->setDisciplina("");
-        $this->setCantEjemplares("");//??  
-        $this->setEstado("");
-     
+        $this->setCantEjemplares(0);  
+        $this->setEstado(0);
     }
-    ### Getters ###
-    function getId(): int {
+    
+    // Getters
+    function getId(): int{
         return $this->id;
     }
-    function getISBN(): string {
+    function getISBN(): string{
         return $this->ISBN;
     }
-    function getTitulo(): string {
+    function getTitulo(): string{
         return $this->titulo;
     }
-    function getAutor(): string {
+    function getAutor(): string{
         return $this->autor;
     }
-    function getEdicion(): string {
+    function getEdicion(): int{
         return $this->edicion;
     }
-    function getEditorial(): string {
+    function getEditorial(): string{
         return $this->editorial;
     }
-    function getDisciplina(): string {
+    function getDisciplina(): string{
         return $this->disciplina;
     }
-    function getCantEjemplares(): int {
+    function getCantEjemplares(): int{
         return $this->cantEjemplares;
     }
-    function getEstado(): int {
-        return $this->estado
+    function getEstado(): int{
+        return $this->estado;
     }
-    ### Setters ###
+
+    // Setters
     function setId($id){
         $this->id = (is_integer($id) && ($id > 0)) ? (int)$id : 0;
     }
@@ -67,13 +70,14 @@
     function setDisciplina($disciplina){
         $this->disciplina = (is_string($disciplina) && strlen(trim($disciplina)) <= 255) ? trim($disciplina): "";
     }
+    function setCantEjemplares($cant){ 
+        $this->cantEjemplares = (is_integer($cant) && (cant > 0)) ? (int)$cant : 0;
+    }
     function setEstado($estado){ 
         $this->estado = (is_integer($estado) && (estado > 0)) ? (int)$estado : 0;
     }
-    function setCantEjemplares($cant){ 
-        $this->cantEjemplares = (is_integer($cant && (cant > 0)) ? (int) ) (int) $cant : 0;
-    }
 
+    // Métodos
     public function toJSON(){
         $json = json_decode("{}");
         $json->{"id"} = $this->getId();
@@ -83,8 +87,8 @@
         $json->{"edicion"} = $this->getEdicion();
         $json->{"editorial"} = $this->getEditorial();
         $json->{"disciplina"} = $this->getDisciplina();
-        $json->{"cantidadElementos"} = $this->getDisciplina();
-        $json->{"estado"} = $this->getDisciplina();
+        $json->{"cantidadEjemplares"} = $this->getCantEjemplares();
+        $json->{"estado"} = $this->getEstado();
         return $json;
     }
 

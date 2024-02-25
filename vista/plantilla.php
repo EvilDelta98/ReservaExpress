@@ -48,7 +48,7 @@
 		</div>
 
 		<footer class="container-fluid bg-light text-muted text-center mx-0 mt-3">
-			<p class="my-1"><small>Sistema de gestión de reservas - Versión 1.0- Delta Pie</small></p>
+			<p class="my-1"><small>Sistema de gestión de reservas - Versión 1.0 - Delta Pie</small></p>
 		</footer>
 	</body>
 </html>

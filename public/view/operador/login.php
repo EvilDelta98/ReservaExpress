@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <?php
-        require_once "../public/view/includes/head.php";
 		$headTitle = "Sistema ReservaExpress";
+        require_once "../public/view/includes/head.php";
         $pass = "1234";
         $hash = password_hash($pass,PASSWORD_DEFAULT);
     ?>
@@ -16,8 +16,8 @@
 </header>
 <body>
     <header>
-		<img src="img/tipografia.png" alt="ReservaExpress tipografia" width="260" height="120">
-		<img src="img/logo.png" alt="ReservaExpress logo" width="148" height="148">
+		<img src="../img/tipografia.png" alt="ReservaExpress tipografia" width="260" height="120">
+		<img src="../img/logo.png" alt="ReservaExpress logo" width="148" height="148">
 	</header>
     <main>
 		<form class="formulario_login" id="formLogin" method="POST" action="">
