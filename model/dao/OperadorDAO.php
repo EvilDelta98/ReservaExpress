@@ -40,11 +40,6 @@
 			$usuario->setTipoUsuario($result->tipoUsuario);
 			$usuario->setEstado($result->estado);
 			$usuario->setFechaAlta($result->fechaAlta);
-			//REVISAR SI VAN ESTAS DOS
-			$usuario->setHoraEntrada($result->horaEntrada);
-       		$usuario->setHoraSalida($result->horaSalida);
-			//¿Vamos a usar ReseteoClave?
-			$usuario->setReseteoClave($result->reseteoClave);
 			return $usuario;
 		}
 
@@ -68,11 +63,6 @@
 			$usuario->setTipoUsuario($result->tipoUsuario);
 			$usuario->setEstado($result->estado);
 			$usuario->setFechaAlta($result->fechaAlta);
-			//REVISAR SI VAN ESTAS DOS
-			//$usuario->setHoraEntrada($result->horaEntrada);
-       		//$usuario->setHoraSalida($result->horaSalida);
-			//¿Vamos a usar ReseteoClave?
-			//$usuario->setReseteoClave($result->reseteoClave);
 			return $usuario;
 		}
 
@@ -210,7 +200,7 @@
 
 		public function list($filtros){
 			//REFACCIONAR PARA LISTAR TODOS LOS SOCIOS SEGÚN SU TIPOUSUARIO
-			$sql = "SELECT *  FROM usuarios_perfiles INNER JOIN usuarios ON usuarios_perfiles.id = usuarios.perfilId";
+			$sql = "SELECT * FROM usuarios_perfiles INNER JOIN usuarios ON usuarios_perfiles.id = usuarios.perfilId";
 			$stmt = $this->conexion->prepare($sql);
 			if(!$stmt->execute()){
 				throw new \Exception("No se pudo ejecutar la consulta de LISTAR");

@@ -78,4 +78,3 @@
 		array($controller, $action),   //Ej: operador->delete()
 		array($inputController, $action, $data)  //Ej: operador->delete(action,data)
 	);
-//APARENTEMENTE NO VA EL COSITO DEL FINAL PHP - REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR

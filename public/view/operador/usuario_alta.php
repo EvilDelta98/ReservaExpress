@@ -16,25 +16,25 @@
     <center> 
         <h1>Alta de Usuario</h1>
         <br>
-        <form class="form-label" id="formAltaU" method="POST" action="usuario/save">
+        <form class="form-label" id="formAltaU" method="POST" action="operador/save">
             <div class="col-sm-2">
-                <label for="">Apellido</label>
+                <label for="datoApellido">Apellido</label>
                 <input minlength="3" maxlength="45" required pattern="[a-zA-ZÀ-ÿ\s]{5,45}" type="text" name="datoApellido" id="datoApellido">
             </div>
             <div  class="col-sm-2">
-                <label for="">Nombre</label>
+                <label for="datoNombre">Nombre</label>
                 <input  minlength="3" maxlength="45" required pattern="[a-zA-ZÀ-ÿ\s]{5,45}" type="text" name="datoNombre" id="datoNombre">
             </div>
         
             <div class="col-sm-2">
-                <label for="">Correo</label>
+                <label for="datoCorreo">Correo</label>
                 <input minlength="15" maxlength="255" type="text" name="datoCorreo" id="datoCorreo">
             </div>
             <div class="col-sm-2">
-                <label for="">Cuenta</label>
+                <label for="datoCuenta">Cuenta</label>
                 <input minlength="5" maxlength="45" required pattern="[a-zA-ZÀ-ÿ\s]{5,45}"  type="text" name="datoCuenta" id="datoCuenta">
             </div>
-            <div class=" col-sm-2"> 
+            <div class="col-sm-2"> 
                 <!--- ¿ESTE DIV ESTÁ VACÍO? --->
             </div>
             <br>
@@ -59,7 +59,7 @@
                 </select>
             </div>
 
-            <button id="guardarUsuario"  name="guardarUsuario" type="button" onclick="sendNewUser()"class="btn btn-success my-4">Registrar</button>
+            <button id="guardarUsuario"  name="guardarUsuario" type="button" onclick="sendNewUser()" class="btn btn-success my-4">Registrar</button>
             <button id="limp" type="button" class="btn btn-success my-4" onclick="limpiar(formAlta)">Limpiar</button>
         </form>
         <a href="public">Volver a la página de inicio</a>

@@ -73,7 +73,7 @@ final class OperadorController{
             $conexion = Conexion::establecer();
             $dao = new OperadorDAO($conexion);
             $c = $dao -> load($id);
-            $repsonse -> {"result"} = $c->toJson();
+            $response -> {"result"} = $c->toJson();
         }
         catch(\PDOException $ex){
             $response->{"error"} = "Error en la bd: " . $ex->getMessage();
@@ -151,7 +151,7 @@ final class OperadorController{
     public function showUpdate($controller, $action, $data){
         $conexion = Conexion::establecer();
         $dao = new OperadorDAO($conexio);
-        $cliente = $dao->load((int)$data);
+        $c = $dao->load((int)$data);
         require_once("../public/view/operador/operador_modificar.php");
     }
 

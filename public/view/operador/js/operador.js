@@ -1,15 +1,10 @@
 const showSave = ()=>{
     //window.location.href = "view/socio/socio_alta.php";
     window.location.href = "operador/showSave";
-};
+}
 
 function showPerfiles(){
     window.location.href = "perfil/index";
-}
-
-//FUNCIÓN DE PRUEBA
-function prueba(){
-    alert("Prueba Operador.js");
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
