@@ -44,7 +44,7 @@ final class MaterialController{
         return $response;
     }
 
-    //Guarda el socio como un nuevo registro en la bd.
+    //Guarda el Material como un nuevo registro en la bd.
     public function save($controller, $action, $data){
         $response = json_decode('{"result":[],"controller":"", "action":"","error":""}');
         $response->{"controller"} = $controller;

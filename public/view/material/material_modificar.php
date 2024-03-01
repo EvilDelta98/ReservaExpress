@@ -69,7 +69,7 @@
 
                     <input value="<?= $c->getId() ?>" type="hidden" name="datoId" id="datoId">
 
-                    <button id="guardarMaterial" name="modificaguardarMaterialrMaterial" type="button" onclick="actualizar(<?= $data ?>)" class="btn btn-success my-4">Modificar</button>
+                    <button id="guardarMaterial" name="guardarMaterial" type="button" onclick="actualizar(<?= $data ?>)" class="btn btn-success my-4">Modificar</button>
                     <button id="limp" name="limp" type="button" onclick="limpiar(formModificarMat)" class="btn btn-danger my-4">Limpiar</button>
                 </form>
                 <a href="public" class="btn btn-primary my-4">Volver</a>

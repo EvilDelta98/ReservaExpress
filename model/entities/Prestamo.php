@@ -1,13 +1,13 @@
 <?php
 final class Prestamo{
     // Atributos
-    private  $id,$socio,$ejemplar,$fechaInicio,$fechaVencimiento,$fechaDevolucion,$observacion,$estado,$tipo;
+    private  $id,$idSocio,$idEjemplar,$fechaInicio,$fechaVencimiento,$fechaDevolucion,$observacion,$estado,$tipo;
 
     // Constructor
     public function __construct() {
       $this->id=0;
-      $this->socio=0;
-      $this->ejemplar=0;
+      $this->idSocio=0;
+      $this->idEjemplar=0;
       $this->fechaInicio="";
       $this->fechaVencimiento="";
       $this->fechaDevolucion="";
@@ -20,11 +20,11 @@ final class Prestamo{
     function getId(): int{
         return $this->id;
     }
-    function getEjemplar(): int{
-        return $this->ejemplar;
+    function getIdSocio(): int{
+        return $this->idSocio;
     }
-    function getSocio(): int{
-        return $this->socio;
+    function getIdEjemplar(): int{
+        return $this->idEjemplar;
     }
     function getFechaInicio(): string{
         return $this->fechaInicio;
@@ -49,11 +49,11 @@ final class Prestamo{
     function setId($id){
         $this->id = (is_integer($id) && ($id > 0)) ? (int)$id : 0;
     }
-    function setSocio($socio){
-        $this->socio = (is_integer($socio) && ($socio > 0)) ? (int)$socio : 0;
+    function setIdSocio($idSocio){
+        $this->idSocio = (is_integer($idSocio) && ($idSocio > 0)) ? (int)$idSocio : 0;
     }
-    function setEjemplar($ejemplar){
-        $this->ejemplar = (is_integer($ejemplar) && ($ejemplar > 0)) ? (int)$ejemplar : 0;
+    function setIdEjemplar($idEjemplar){
+        $this->idEjemplar = (is_integer($idEjemplar) && ($idEjemplar > 0)) ? (int)$idEjemplar : 0;
     }
     function setFechaInicio($fechaI){
         $this->fechaInicio= (is_string($fechaI)) ? trim($fechaI) : "";
@@ -78,9 +78,8 @@ final class Prestamo{
     public function toJSON(): object{
         $json = json_decode("{}");
         $json->{"id"} = $this->getId();
-        $json->{"socio"} = $this->getSocio();
-        $json->{"apellido"} = $this->getApellido();
-        $json->{"ejemplar"} = $this->getEjemplar();
+        $json->{"idSocio"} = $this->getIdSocio();
+        $json->{"idEjemplar"} = $this->getIdEjemplar();
         $json->{"fechaInicio"} = $this->getFechaInicio();
         $json->{"fechaVencimiento"} = $this->getFechaVencimiento();
         $json->{"fechaDevolucion"} = $this->getFechaDevolucion();
