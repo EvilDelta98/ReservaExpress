@@ -1,21 +1,24 @@
 <?php
-	namespace model\dao;
 
-	final class Conexion {
-		public static function establecer(): object{
-			//Extrae datos de lib/config.php
-			$conexion = new PDO(
-				DB_DSN, 
-				DB_USER, 
-				DB_PASS, 
-				array(
-					PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, 
-					PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-				)
-			);
-			if(!$conexion) throw PDOException();
-			// $conexion->setAttribute(PDO::ATR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-			return $conexion;
-		}
-	}
-?>
+namespace model\dao;
+
+final class Conexion{
+
+    public static function establecer(): object{
+        //Data Source Name
+        $dsn = "mysql:dbname=reservaexpress;host=127.0.0.1;port=3306";
+        $user = "root";
+        $pass = "";
+        $conexion = new \PDO(
+            $dsn,
+            $user,
+            $pass,
+            array(
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ
+            )
+        );
+        return $conexion;
+    }
+
+}

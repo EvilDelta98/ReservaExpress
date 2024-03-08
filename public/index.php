@@ -45,14 +45,14 @@
 		$fechaActual = new DateTime("NOW", new DateTimeZone("America/Argentina/ComodRivadavia"));
 		$horaSalida = new DateTime($fechaActual->format("d-m-Y")." ".$_SESSION["horaSalida"], new DateTimeZone("America/Argentina/ComodRivadavia"));
 		$horaEntrada = new DateTime($fechaActual->format("d-m-Y")." ".$_SESSION["horaEntrada"], new DateTimeZone("America/Argentina/ComodRivadavia"));
-		if(($fechaActual > $horaSalida) || ($fechaActual < $horaEntrada)){
+		/*if(($fechaActual > $horaSalida) || ($fechaActual < $horaEntrada)){
 			$controller = "operador";
 			$action = 'fueraHorario';
-		}
+		}*/
 	}
 
 	else{
-		if(($controller !== "operador" || $action != "autenticacion") && ($action != "reseteoClave" && $action != "resetear")){
+		if(($controller !== "operador" || $action != "au") && ($action != "reseteoClave" && $action != "resetear")){
 			$controller = 'operador';
 			$action = 'login';
 			$data = 0;
@@ -78,3 +78,5 @@
 		array($controller, $action),   //Ej: operador->delete()
 		array($inputController, $action, $data)  //Ej: operador->delete(action,data)
 	);
+	;
+    echo" action es " .$action;

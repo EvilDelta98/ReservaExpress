@@ -2,11 +2,11 @@
 
 namespace controller;
 
-require_once '../model/entities/Operador.php';
-use model\entities\Operador;
-require_once '../model/dao/OperadorDAO.php';
+require_once "../model/entities/Operador.php";
 use model\dao\OperadorDAO;
-require_once '../model/dao/Conexion.php';
+use model\entities\Operador;
+require_once "../model/dao/OperadorDAO.php";
+require_once "../model/dao/Conexion.php";
 use model\dao\Conexion;
 
 final class OperadorController{
@@ -15,7 +15,9 @@ final class OperadorController{
         $headTitle="Indice";
         require_once('../public/view/operador/index.php');
     }
-
+    public function prueba($controller, $action, $data){
+        echo("HOLAAA");
+    }
     public function forbidden($controller, $action, $data){
         $headTitle="Prohibido";
         require_once('../public/view/operador/forbidden.php');
@@ -94,19 +96,19 @@ final class OperadorController{
         //$data = json_decode($data);
         $data = json_decode(file_get_contents("php://input"));
         $idp = (int) $data->{"datoPerfilId"};
-        $hash = password_hash($data->{"datoClave"}, PASSWORD_DEFAULT);
+        $hash= password_hash($data->{"datoClave"},PASSWORD_DEFAULT);
         $c = new Operador();
         $c->setNombre($data->{"datoNombre"});
         $c->setApellido($data->{"datoApellido"});
         $c->setCorreo($data->{"datoCorreo"});
         $c->setCuenta($data->{"datoCuenta"});
         $c->setClave($hash);
-        $c->setPerfilId($idp);
+        //$c->setPerfilId($idp); VER QUE ONDA ESTO
         $c->setTipoUsuario($data->{"datoTipoUsuario"});
         $c->setEstado(1);
 
-        $c->setHoraEntrada($data->{"datoHoraEntrada"});
-        $c->setHoraSalida($data->{"datoHoraSalida"});
+      //  $c->setHoraEntrada($data->{"datoHoraEntrada"});
+        //$c->setHoraSalida($data->{"datoHoraSalida"});
 
         $c->setReseteoClave(1);
         try{
@@ -126,19 +128,20 @@ final class OperadorController{
     }
 
     //Devuelve un listado de socios.
+   
     public function list($controller, $action, $data){
         $response = json_decode('{"result":[],"controller":"", "action":"","error":""}');
         $response->{"controller"} = $controller;
         $response->{"action"} = $action;
+      
         try{
             $conexion = Conexion::establecer();
             $dao = new OperadorDAO($conexion);
-            //Si hay filtros, van en $data
-            $dao->list($data);
-            $response->{"result"} = $dao->toJson();
+            //Por ahora, si hubieran filtros, vendrían en $data
+            $response->{"result"} = $dao->list($data);
         }
         catch(\PDOException $ex){
-            $response->{"error"} = "Error en la bd: " . $ex->getMessage();
+            $response->{"error"} = "Error en base de datosssss: " . $ex->getMessage();
         }
         catch(\Exception $ex){
             $response->{"error"} = $ex->getMessage();
@@ -150,7 +153,7 @@ final class OperadorController{
     //Muestra el formulario de actualización para un socio existente
     public function showUpdate($controller, $action, $data){
         $conexion = Conexion::establecer();
-        $dao = new OperadorDAO($conexio);
+        $dao = new OperadorDAO($conexion);
         $c = $dao->load((int)$data);
         require_once("../public/view/operador/operador_modificar.php");
     }
@@ -252,31 +255,34 @@ final class OperadorController{
         require_once("../public/view/operador/login.php");
     }
 
-    public function autentication($controller, $action, $data){
+    public function au($controller, $action, $data){
         $response = json_decode('{"controller":"", "action":"","error":"","perfil":""}');
         $response->{"controller"} = $controller;
         $response->{"action"} = $action;
         $data = json_decode(file_get_contents("php://input"));
-        $cuenta = $data->{"datoCuenta"};
-        $clave  = $data->{"datoClave"};
+      $cuenta= $data->{"datoCuenta"};
+      $clave= $data->{"datoClave"};
         try{
-            $conexion = Conexion::establecer();
-            OperadorDAO::login($conexion, $cuenta, $clave);
+            $connection = Conexion::establecer();
+            OperadorDAO::login($connection,$cuenta,$clave);
+           // session_start();
             $response->{"perfil"} = $_SESSION["perfil"];
-            //redireccionar a inicio/index
+          
         }
         catch(\PDOException $ex){
-            $response->{"error"} = "Error en la bd: " . $ex->getMessage();
+            $response->{"error"} = "Error en base de datos: " . $ex->getMessage();
         }
         catch(\Exception $ex){
             $response->{"error"} = $ex->getMessage();
         }
+       
         echo json_encode($response);
+    
     }
 
     public function logout($controller, $action, $data){
         //Terminar la info de estado
-        sesion_unset(); //Destruye las variables
+        session_unset(); //Destruye las variables
         session_destroy(); //Destruye la sesión
         require_once("../public/view/operador/logout.php");
         header("refresh:6;url=http://localhost/PruebaNuevaHibrido/public/");
@@ -284,11 +290,37 @@ final class OperadorController{
 
     public function fueraHorario($controller, $action, $data){
         //Terminar la info de estado
-        sesion_unset(); //Destruye las variables
+        session_unset(); //Destruye las variables
         session_destroy(); //Destruye la sesión
         require_once("../public/view/operador/fueraHorario.php");
         header("refresh:6;url=http://localhost/PruebaNuevaHibrido/public/socio/index");
     }
+    public function autentication1($controller,$action,$data){
+    
+        //require_once("../public/view/usuario/login.php");
+        $response = json_decode('{"controller":"", "action":"","error":"","perfil":""}');
+        $response->{"controller"} = $controller;
+        $response->{"action"} = $action;
+        $data = json_decode(file_get_contents("php://input"));
+      $cuenta= $data->{"datoCuenta"};
+      $clave= $data->{"datoClave"};
+        try{
+            $conexion = Conexion::establecer();
+            OperadorDAO::login($conexion, $cuenta, $clave);
+            $response->{"perfil"} = $_SESSION["perfil"];
+           
+            //redireccionar a inicio/index
+        }
+        catch(\PDOException $ex){
+            $response->{"error"} = "Error en base de datos: " . $ex->getMessage();
+        }
+        catch(\Exception $ex){
+            $response->{"error"} = $ex->getMessage();
+        }
+       
+        echo json_encode($response);
+    
+  }
 }
     //MÉTODOS VIEJOSSSSSSSSSSSSSSSSSSSSSSSSS
     /* 
