@@ -131,10 +131,10 @@
 		}
 
 		public static function login($conexion, $cuenta, $clave): void{
-			echo"hola soy logindao";
-			$sql = "SELECT id, cuenta, clave, nombre, apellido, estado FROM usuario WHERE cuenta = :cuenta";
+			
+			$sql = "SELECT id, cuenta, clave, nombre, apellido, estado, tipoUsuario FROM usuario WHERE cuenta = :cuenta";
 			$stm = $conexion->prepare($sql);
-			echo"hola soy logindao";
+			
 			$stm->execute(array("cuenta" => $cuenta));
 			if($stm->rowCount() != 1){
 				throw new \Exception("No existe la cuenta " . $cuenta);
@@ -150,7 +150,8 @@
 			$_SESSION["clave_secreta"]="final2024";//hash
 			$_SESSION["usuario"]=$result->nombre."," .$result->apellido;
 			//USAMOS PERFILES? si para saber que mostrarle al abrir el sistema al usuario segun si es admin o no
-			$_SESSION["perfil"]=$result->perfilId;
+			$_SESSION["perfil"]=$result->tipoUsuario;
+		
 			$_SESSION["id"]=$result->id;
 		}
 
