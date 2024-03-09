@@ -12,7 +12,7 @@ use model\dao\Conexion;
 final class OperadorController{
 
     public function index($controller, $action, $data){
-        $headTitle="Indice";
+       // $headTitle="Indice";
         require_once('../public/view/operador/index.php');
     }
     public function prueba($controller, $action, $data){
@@ -67,9 +67,9 @@ final class OperadorController{
 
     //Carga el correspondiente registro de bd y lo devuelve como una entidad.
     public function load($controller, $action, $data){
-        $responde = json_decode('{"result":[],"controller":"", "action":"","error":""}');
-        $responde->{"controller"} = $controller;
-        $responde->{"action"} = $action;
+        $response = json_decode('{"result":[],"controller":"", "action":"","error":""}');
+        $response->{"controller"} = $controller;
+        $response->{"action"} = $action;
         $id = (int)$data;
         try{
             $conexion = Conexion::establecer();
@@ -256,28 +256,31 @@ final class OperadorController{
     }
 
     public function au($controller, $action, $data){
-        $response = json_decode('{"controller":"", "action":"","error":"","perfil":""}');
-        $response->{"controller"} = $controller;
-        $response->{"action"} = $action;
-        $data = json_decode(file_get_contents("php://input"));
-      $cuenta= $data->{"datoCuenta"};
-      $clave= $data->{"datoClave"};
-        try{
-            $connection = Conexion::establecer();
-            OperadorDAO::login($connection,$cuenta,$clave);
-           // session_start();
-            $response->{"perfil"} = $_SESSION["perfil"];
-          
-        }
-        catch(\PDOException $ex){
-            $response->{"error"} = "Error en base de datos: " . $ex->getMessage();
-        }
-        catch(\Exception $ex){
-            $response->{"error"} = $ex->getMessage();
-        }
-       
-        echo json_encode($response);
     
+      //require_once("../public/view/usuario/login.php");
+      $response = json_decode('{"controller":"", "action":"","error":"","perfil":""}');
+      $response->{"controller"} = $controller;
+      $response->{"action"} = $action;
+      $data = json_decode(file_get_contents("php://input"));
+     
+    $cuenta= $data->{"datoCuenta"};
+    $clave= $data->{"datoClave"};
+    
+      try{
+          $conexion = Conexion::establecer();
+          OperadorDAO::login($conexion, $cuenta, $clave);
+          $response->{"perfil"} = $_SESSION["perfil"];
+         
+          //redireccionar a inicio/index
+      }
+      catch(\PDOException $ex){
+          $response->{"error"} = "Error en base de datos: " . $ex->getMessage();
+      }
+      catch(\Exception $ex){
+          $response->{"error"} = $ex->getMessage();
+      }
+     
+      echo json_encode($response);
     }
 
     public function logout($controller, $action, $data){
