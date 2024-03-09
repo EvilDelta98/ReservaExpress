@@ -3,7 +3,7 @@
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?= $_SESSION["operador"] ?>
+                    <?= $_SESSION["usuario"] ?> //se refiere al nombre de usuario
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item" href="operador/logout">Cerrar sesión</a></li>
