@@ -2,8 +2,7 @@ function log(){
     
     let form=document.forms["formLogin"];
     let request = {};
-    let cuenta= form.datoCuenta.value;
-    request.datoCuenta= form.datoCuenta.value;
+    request.datoCuenta=form.datoCuenta.value;
     request.datoClave= form.datoClave.value;
     if(form.reportValidity()==true){
     
@@ -14,11 +13,13 @@ function log(){
               alert(data.error);
                return;
            }
-        /*
+        
            if(data.perfil == "1"){
-               window.location.href = "usuario/admin";
+            console.log("holi");
+               window.location.href = "operador/index";
            };
-           if(data.perfil == "4"){
+           console.log("holi");
+          /* if(data.perfil == "4"){
                window.location.href = "cliente/index";
            };
             
@@ -30,6 +31,6 @@ function log(){
           // window.location.href="operador/index";
          
        })
-       .catch(()=>{});
+       .catch((error)=>{console.log("error "+ error)});
     }
    }
