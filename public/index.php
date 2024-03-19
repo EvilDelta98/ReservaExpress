@@ -1,6 +1,3 @@
-
-
-
 <?php
 /*$controller = 'cliente';
 $action = 'index';
@@ -87,23 +84,24 @@ call_user_func_array(
 
     session_start();
 
-    if(isset($_SESSION["clave_secreta"]) && ($_SESSION["clave_secreta"] === "lab2023")){
+    if(isset($_SESSION["clave_secreta"]) && ($_SESSION["clave_secreta"] === "final2024")){
         //Preguntar por el horario
        
-      $fechaActual = new DateTime("NOW", new DateTimeZone("America/Argentina/ComodRivadavia"));
+     /* $fechaActual = new DateTime("NOW", new DateTimeZone("America/Argentina/ComodRivadavia"));
        $horaSalida = new DateTime($fechaActual->format("d-m-Y")." ".$_SESSION["horaSalida"], new DateTimeZone("America/Argentina/ComodRivadavia"));
        $horaEntrada = new DateTime($fechaActual->format("d-m-Y")." ".$_SESSION["horaEntrada"], new DateTimeZone("America/Argentina/ComodRivadavia"));
-        //falta hora de salida y validar el rango horario
-   if(($fechaActual > $horaSalida) || ($fechaActual < $horaEntrada)){
+        //falta hora de salida y validar el rango horario*/
+   /*if(($fechaActual > $horaSalida) || ($fechaActual < $horaEntrada)){
         
             $controller = 'operador'; 
             $action = 'fueraHorario';
-        }
+        }*/
        /* if( $_SESSION["perfil"]!=1 && ($controller=="perfil" || ( ($controller=="usuario" && $action!="logout")) )){
             $controller = 'usuario'; 
             $action = 'fordiben';
             $data = 0;
         }*/
+        echo"clave secreta".$_SESSION["clave_secreta"];
     }
     
    
@@ -112,9 +110,9 @@ call_user_func_array(
     else{
         if(($controller !== "operador" || $action != "au") && ($action!="reseteoClave" && $action!="resetear" ) ){
           
-           /*     $controller = 'operador'; 
+               $controller = 'operador'; 
                 $action = 'login';
-                $data = 0;*/
+                $data = 0;
             
         }
         
